@@ -1,86 +1,29 @@
-#pragma once
-#include<iostream>
-#include"clientHead.h"
+#include "serverHead.h"
+unsigned __int64 client[10][2];
+char onlineName[10][20];
+char onlineQQID[10][20];
+int clientNum;
 int main()
 {
-	/*注意: 校园网不同地方的IP会变化*/
-	clientSocket mySocket("49.140.97.77", 8888);
-	if (!mySocket.connectToServer())
+	serverSocket mySocket(8888);
+	cout << "*******----服务器启动----*******" << endl;
+	cout << "端口号8888开始监听" << endl;
+	while (1)
 	{
-		return 0;
-	}
-	mgc Data;
-	mgc ret;
-
-	//账号密码登陆，存储在 id_confrim 表中
-	while (initlogin(Data, ret, mySocket) != 1) {}
-	strcpy_s(Data.table, "qq");
-	MyQQ myqq(Data, ret, mySocket);
-	strcpy_s(Data.table, "wc");
-	MyWeChat mywechat(Data, ret, mySocket);
-	strcpy_s(Data.table, "wb");
-	MyWeBo mywebo(Data, ret, mySocket);
-
-	//向服务端发送数据
-	while (true)
-	{
-
-		menu();
-		//主菜单操作
-		cout << "请输入操作：";
-		cin >> Data.action;
-		mySocket.sendData(Data);
-		int flag = 0;
-		switch (Data.action)
+		SOCKET sClient = mySocket.serverAccpetSocket();
+		if (sClient == -1)
 		{
-		case 1:
-		{
-			//登陆QQ 获取其他平台的好友推荐
-			strcpy_s(Data.table, "qq");
-			myqq.getRecommendFriend(mywechat.getFriendList(), "WeChat", Data, mySocket);
-			myqq.getRecommendFriend(mywebo.getFriendList(), "WeBo", Data, mySocket);
-			/* 通讯暂时结束 */
-			Data.action = 1;	
-			mySocket.sendData(Data);
-			strcpy_s(Data.table, "qq");
-			myqq.action(Data, mySocket);
-		} break;
-		case 2:
-		{
-			//登陆微信 获取其他平台的好友推荐
-			strcpy_s(Data.table, "wc");
-			mywechat.getRecommendFriend(myqq.getFriendList(), "QQ", Data, mySocket);
-			mywechat.getRecommendFriend(mywebo.getFriendList(), "WeBo", Data, mySocket);
-			/* 通讯暂时结束 */
-			Data.action = 1;
-			mySocket.sendData(Data);
-			strcpy_s(Data.table, "wc");
-			mywechat.action(Data, mySocket);
-		}break;
-		case 3:
-		{
-			//登陆微博 获取其他平台的好友推荐
-			strcpy_s(Data.table, "wb");
-			mywebo.getRecommendFriend(myqq.getFriendList(), "QQ", Data, mySocket);
-			mywebo.getRecommendFriend(mywechat.getFriendList(), "WeChat", Data, mySocket);
-			/* 通讯暂时结束 */
-			Data.action = 1;
-			mySocket.sendData(Data);
-			strcpy_s(Data.table, "wb");
-			mywebo.action(Data, mySocket);
-		}break;
-		case 9:flag = 1; break;
-
-		default:cout << "输入错误 请重新输入：" << endl;
+			continue;
 		}
-		if (flag == 1)
+		else
 		{
-			Data.action = 9;
-			//通知服务器 本客户端下线
-			mySocket.sendData(Data);
-			break;
+			client[clientNum][0] = sClient;
+			clientNum++;
+			std::cout << "接收到一个客户端 :" << sClient << std::endl;
 		}
+		std::thread t1(clientSocketThreadFunction, sClient);//启用线程
+		t1.detach();
 	}
-	WSACleanup();
 	return 0;
 }
+
