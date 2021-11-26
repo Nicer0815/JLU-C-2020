@@ -6,7 +6,7 @@ extern int clientNum;
 User_mysql::User_mysql()
 {
 	strcpy_s(user, "root");
-	strcpy_s(pswd, "201501516lyn...");
+	strcpy_s(pswd, "2");
 	strcpy_s(host, "localhost");
 	port = 3307;
 	mysql_init(&myCont);
@@ -19,7 +19,7 @@ User_mysql::User_mysql()
 			system("pause");
 			exit(-1);
 		}
-		cout << "mydesign ≥…π¶¥Úø™" << endl;
+		cout << "mydesign ÊàêÂäüÊâìÂºÄ" << endl;
 
 	}
 	else
@@ -30,28 +30,28 @@ User_mysql::User_mysql()
 	}
 
 }
-//ºÏ≤‚◊‹∆ΩÃ®’À∫≈√‹¬Îµƒ’˝»∑–‘£¨≤¢Ã·«∞Ω´∏˜∆ΩÃ®’À∫≈¥Ê¥¢÷¡Data“‘±„Ω”œ¬¿¥∏˜∆ΩÃ®∂‘œÛµƒππ‘Ï
+//Ê£ÄÊµãÊÄªÂπ≥Âè∞Ë¥¶Âè∑ÂØÜÁ†ÅÁöÑÊ≠£Á°ÆÊÄßÔºåÂπ∂ÊèêÂâçÂ∞ÜÂêÑÂπ≥Âè∞Ë¥¶Âè∑Â≠òÂÇ®Ëá≥Data‰ª•‰æøÊé•‰∏ãÊù•ÂêÑÂπ≥Âè∞ÂØπË±°ÁöÑÊûÑÈÄ†
 int User_mysql::login(message & Data)
 {
 	char order[1024];
-	sprintf_s(order, "SELECT * FROM id_confirm WHERE ’À∫≈='%s'", Data.ID);
+	sprintf_s(order, "SELECT * FROM id_confirm WHERE Ë¥¶Âè∑='%s'", Data.ID);
 	res = mysql_query(&myCont, order);
 	if (!res)
 	{
 		result = mysql_store_result(&myCont);
 		if (result)
 		{
-			//»Áπ˚≤È—Ø≤ªŒ™ø’
+			//Â¶ÇÊûúÊü•ËØ¢‰∏ç‰∏∫Á©∫
 			if (sql_row = mysql_fetch_row(result))
 			{
-				//√‹¬Î’˝»∑
+				//ÂØÜÁ†ÅÊ≠£Á°Æ
 				if (!strcmp(sql_row[1], Data.paswad))
 				{
-					//Ã·«∞∞—»˝∏ˆ’À∫≈¥Ê¥¢µΩData÷– ∑Ω±„ Œ¢X∆ΩÃ®µƒ∂‘œÛµƒππ‘Ï
+					//ÊèêÂâçÊää‰∏â‰∏™Ë¥¶Âè∑Â≠òÂÇ®Âà∞Data‰∏≠ Êñπ‰æø ÂæÆXÂπ≥Âè∞ÁöÑÂØπË±°ÁöÑÊûÑÈÄ†
 					strcpy_s(Data.QQID, sql_row[3]);
 					strcpy_s(Data.WCID, sql_row[4]);
 					strcpy_s(Data.WBID, sql_row[5]);
-					//∂‘QQÃÿ“Ï–‘ µœ÷µƒº¥ ±¡ƒÃÏπ¶ƒ‹
+					//ÂØπQQÁâπÂºÇÊÄßÂÆûÁé∞ÁöÑÂç≥Êó∂ËÅäÂ§©ÂäüËÉΩ
 					strcpy_s(onlineQQID[clientNum - 1], Data.QQID);					
 					return 1;
 				}
@@ -60,7 +60,7 @@ int User_mysql::login(message & Data)
 					return 3;
 				}
 			}
-			//’À∫≈≤ª¥Ê‘⁄
+			//Ë¥¶Âè∑‰∏çÂ≠òÂú®
 			else
 			{
 				return 2;
@@ -70,34 +70,34 @@ int User_mysql::login(message & Data)
 	}
 	else
 	{
-		cout << "≤È—Ø ß∞‹" << endl;
+		cout << "Êü•ËØ¢Â§±Ë¥•" << endl;
 		system("pause");
 		exit(-1);
 	}
-	//’À∫≈≤ª¥Ê‘⁄
+	//Ë¥¶Âè∑‰∏çÂ≠òÂú®
 	return 2;
 
 }
-//∑µªÿøÕªß∂Àª˘¿‡ user ππ‘ÏÀ˘–Ë–≈œ¢
+//ËøîÂõûÂÆ¢Êà∑Á´ØÂü∫Á±ª user ÊûÑÈÄ†ÊâÄÈúÄ‰ø°ÊÅØ
 int User_mysql::returnInfo(message & Data)
 {
 	char order[1024];
-	sprintf_s(order, "SELECT * FROM id_confirm WHERE ’À∫≈='%s'", Data.ID);
+	sprintf_s(order, "SELECT * FROM id_confirm WHERE Ë¥¶Âè∑='%s'", Data.ID);
 	res = mysql_query(&myCont, order);
 	if (!res)
 	{
 		result = mysql_store_result(&myCont);
 		if (result)
 		{
-			//»Áπ˚≤È—Ø≤ªŒ™ø’
+			//Â¶ÇÊûúÊü•ËØ¢‰∏ç‰∏∫Á©∫
 			if (sql_row = mysql_fetch_row(result))
 			{
-				//∫Û∆⁄‘Ÿ‘ˆº”–≈œ¢£ø
+				//ÂêéÊúüÂÜçÂ¢ûÂä†‰ø°ÊÅØÔºü
 				strcpy_s(Data.ID, sql_row[0]);
 				cout << "user return over" << endl;
 				return 1;
 			}
-			//’À∫≈≤ª¥Ê‘⁄
+			//Ë¥¶Âè∑‰∏çÂ≠òÂú®
 			else
 			{
 				cout << "return User_Info error cause ID do not exist" << endl;
@@ -113,12 +113,12 @@ int User_mysql::returnInfo(message & Data)
 	}
 	else
 	{
-		cout << "return info sql «Î«Û”Ôæ‰ ß∞‹" << endl;
+		cout << "return info sql ËØ∑Ê±ÇËØ≠Âè•Â§±Ë¥•" << endl;
 		return 3;
 	}
 
 }
-//QQ∫√”— ˝æ›ø‚∂‘œÛππ‘Ï∫Ø ˝
+//QQÂ•ΩÂèãÊï∞ÊçÆÂ∫ìÂØπË±°ÊûÑÈÄ†ÂáΩÊï∞
 Friend_mysql::Friend_mysql()
 {
 	strcpy_s(user, "root");
@@ -135,7 +135,7 @@ Friend_mysql::Friend_mysql()
 			system("pause");
 			exit(-1);
 		}
-		cout << "mydesign ≥…π¶¥Úø™" << endl;
+		cout << "mydesign ÊàêÂäüÊâìÂºÄ" << endl;
 
 	}
 	else
@@ -146,7 +146,7 @@ Friend_mysql::Friend_mysql()
 	}
 
 }
-//QQ»∫ ˝æ›ø‚∂‘œÛππ‘Ï∫Ø ˝
+//QQÁæ§Êï∞ÊçÆÂ∫ìÂØπË±°ÊûÑÈÄ†ÂáΩÊï∞
 Group_mysql::Group_mysql()
 {
 	strcpy_s(user, "root");
@@ -163,7 +163,7 @@ Group_mysql::Group_mysql()
 			system("pause");
 			exit(-1);
 		}
-		cout << "mydesign ≥…π¶¥Úø™" << endl;
+		cout << "mydesign ÊàêÂäüÊâìÂºÄ" << endl;
 
 	}
 	else
@@ -173,11 +173,11 @@ Group_mysql::Group_mysql()
 		exit(-1);
 	}
 }
-//»• ˝æ›ø‚÷–∑µªÿ -±æ»À- œÍœ∏–≈œ¢£¨º¥øÕªß∂Àmyqq∂‘œÛππ‘ÏÀ˘–Ë–≈œ¢
+//ÂéªÊï∞ÊçÆÂ∫ì‰∏≠ËøîÂõû -Êú¨‰∫∫- ËØ¶ÁªÜ‰ø°ÊÅØÔºåÂç≥ÂÆ¢Êà∑Á´ØmyqqÂØπË±°ÊûÑÈÄ†ÊâÄÈúÄ‰ø°ÊÅØ
 int Friend_mysql::returnDetails(message & Data)
 {
 	char order[1024];
-	sprintf_s(order, "SELECT * FROM %s_details WHERE %s’À∫≈=%s"
+	sprintf_s(order, "SELECT * FROM %s_details WHERE %sË¥¶Âè∑=%s"
 		,Data.table, Data.table, Data.XID);
 	
 	cout << order << endl;
@@ -189,15 +189,15 @@ int Friend_mysql::returnDetails(message & Data)
 		result = mysql_store_result(&myCont);
 		if (result)
 		{
-			//≤È—ØΩ·π˚≤ªŒ™ø’
+			//Êü•ËØ¢ÁªìÊûú‰∏ç‰∏∫Á©∫
 			if (sql_row = mysql_fetch_row(result))
 			{
-				//…æ¡ÀData.platform
+				//Âà†‰∫ÜData.platform
 				Data.platform = 1;
-				strcpy_s(Data.Name, sql_row[1]);		//Œ¢X√˚◊÷
-				Data.TAge = atoi(sql_row[2]);			//T¡‰
-				strcpy_s(Data.BirthDay, sql_row[3]);	//≥ˆ…˙»’∆⁄
-				strcpy_s(Data.Place, sql_row[4]);		//À˘‘⁄µÿ
+				strcpy_s(Data.Name, sql_row[1]);		//ÂæÆXÂêçÂ≠ó
+				Data.TAge = atoi(sql_row[2]);			//TÈæÑ
+				strcpy_s(Data.BirthDay, sql_row[3]);	//Âá∫ÁîüÊó•Êúü
+				strcpy_s(Data.Place, sql_row[4]);		//ÊâÄÂú®Âú∞
 				if (strcmp(sql_row[5], "0"))
 				{
 					if (!strcmp("qq", Data.table))
@@ -215,48 +215,48 @@ int Friend_mysql::returnDetails(message & Data)
 						Data.platform = 10;
 						strcpy_s(Data.WBID, sql_row[5]);
 					}
-					else //∑«QQππ‘Ï∫Ø ˝
+					else //ÈùûQQÊûÑÈÄ†ÂáΩÊï∞
 					{
 						Data.platform = -10;
 						strcpy_s(Data.QQID, sql_row[5]);		
 					}
 				}
-				//º«¬ºµ±«∞…œœﬂµƒøÕªß∂ÀµƒQQ’À∫≈ ∫Õ √˚◊÷
+				//ËÆ∞ÂΩïÂΩìÂâç‰∏äÁ∫øÁöÑÂÆ¢Êà∑Á´ØÁöÑQQË¥¶Âè∑ Âíå ÂêçÂ≠ó
 				if (!strcmp(Data.table, "qq"))
 				{
 					client[clientNum - 1][1] = atoi(Data.QQID);
 					strcpy_s(onlineName[clientNum - 1], Data.Name);
-					cout << clientNum << "Œª£∫  "
-						<< client[clientNum - 1][1] << "  QQ”√ªß: "
-						<< onlineName[clientNum - 1] << "…œœﬂ" << endl;
+					cout << clientNum << "‰ΩçÔºö  "
+						<< client[clientNum - 1][1] << "  QQÁî®Êà∑: "
+						<< onlineName[clientNum - 1] << "‰∏äÁ∫ø" << endl;
 				}
 				return 1;
 			}
 			else
 			{
-				cout << "sql "<<Data.table<<"_details ≤È—ØΩ·π˚Œ™ø’£¨∏√”√ªßø…ƒ‹≤ª¥Ê‘⁄" << endl;
+				cout << "sql "<<Data.table<<"_details Êü•ËØ¢ÁªìÊûú‰∏∫Á©∫ÔºåËØ•Áî®Êà∑ÂèØËÉΩ‰∏çÂ≠òÂú®" << endl;
 				return 2;
 			}
 		}
 		else
 		{
-			cout << "sql " << Data.table << "_details ≤È—ØΩ·π˚Œ™ø’£¨∏√”√ªßø…ƒ‹≤ª¥Ê‘⁄" << endl;
+			cout << "sql " << Data.table << "_details Êü•ËØ¢ÁªìÊûú‰∏∫Á©∫ÔºåËØ•Áî®Êà∑ÂèØËÉΩ‰∏çÂ≠òÂú®" << endl;
 			return 2;
 		}
 	}
 	else
 	{
-		cout << "sql  " << Data.table << "_datails «Î«Û”Ôæ‰ ß∞‹" << endl;
+		cout << "sql  " << Data.table << "_datails ËØ∑Ê±ÇËØ≠Âè•Â§±Ë¥•" << endl;
 		return 3;
 	}
 
 }
-//»• ˝æ›ø‚÷–∑µªÿ∫√”—¡–±Ì£¨º¥øÕªß∂Àmyqq∂‘œÛππ‘ÏÀ˘–Ë–≈œ¢
+//ÂéªÊï∞ÊçÆÂ∫ì‰∏≠ËøîÂõûÂ•ΩÂèãÂàóË°®ÔºåÂç≥ÂÆ¢Êà∑Á´ØmyqqÂØπË±°ÊûÑÈÄ†ÊâÄÈúÄ‰ø°ÊÅØ
 int Friend_mysql::returnInfo(message & Data)
 {
 	char order[1024];
 	sprintf_s(order
-		, "SELECT * FROM %s_friend WHERE À˘ Ù’À∫≈='%s'"
+		, "SELECT * FROM %s_friend WHERE ÊâÄÂ±ûË¥¶Âè∑='%s'"
 		,Data.table, Data.XID);
 	res = mysql_query(&myCont, order);
 	Data.FriendNum = 0;
@@ -266,17 +266,17 @@ int Friend_mysql::returnInfo(message & Data)
 		result = mysql_store_result(&myCont);
 		if (result)
 		{
-			//»Áπ˚≤È—Ø≤ªŒ™ø’
+			//Â¶ÇÊûúÊü•ËØ¢‰∏ç‰∏∫Á©∫
 			while (sql_row = mysql_fetch_row(result))
 			{
 				strcpy_s(Data.FriendList[Data.FriendNum], sql_row[1]);
 				strcpy_s(Data.FriendAccount[Data.FriendNum], sql_row[4]);
 				strcpy_s(Data.FriendNickName[Data.FriendNum], sql_row[3]);
 				Data.FriendNum++;
-				cout << "∫√”—–Ú∫≈" << Data.FriendNum <<":"<< sql_row[1] <<"---"<< sql_row[3];
+				cout << "Â•ΩÂèãÂ∫èÂè∑" << Data.FriendNum <<":"<< sql_row[1] <<"---"<< sql_row[3];
 				cout << endl;
 			}
-			//’À∫≈≤ª¥Ê‘⁄
+			//Ë¥¶Âè∑‰∏çÂ≠òÂú®
 			if(!Data.FriendNum)
 			{
 				cout << "return FriendList error cause ID do not have" << endl;
@@ -295,17 +295,17 @@ int Friend_mysql::returnInfo(message & Data)
 	}
 	else
 	{
-		cout << "return FriendList sql «Î«Û”Ôæ‰ ß∞‹" << endl;
+		cout << "return FriendList sql ËØ∑Ê±ÇËØ≠Âè•Â§±Ë¥•" << endl;
 		return 3;
 	}
 
 }
-//»• ˝æ›ø‚÷–∑µªÿ»∫◊È¡–±Ì£¨º¥øÕªß∂Àmyqq∂‘œÛππ‘ÏÀ˘–Ë–≈œ¢
+//ÂéªÊï∞ÊçÆÂ∫ì‰∏≠ËøîÂõûÁæ§ÁªÑÂàóË°®ÔºåÂç≥ÂÆ¢Êà∑Á´ØmyqqÂØπË±°ÊûÑÈÄ†ÊâÄÈúÄ‰ø°ÊÅØ
 int Group_mysql::returnInfo(message & Data)
 {
 	char order[1024];
 	sprintf_s(order
-		, "SELECT * FROM %s_group WHERE »∫≥…‘±’À∫≈='%s'"
+		, "SELECT * FROM %s_group WHERE Áæ§ÊàêÂëòË¥¶Âè∑='%s'"
 		,Data.table, Data.XID);
 	res = mysql_query(&myCont, order);
 	Data.GroupNum = 0;
@@ -315,7 +315,7 @@ int Group_mysql::returnInfo(message & Data)
 		result = mysql_store_result(&myCont);
 		if (result)
 		{
-			//»Áπ˚≤È—Ø≤ªŒ™ø’
+			//Â¶ÇÊûúÊü•ËØ¢‰∏ç‰∏∫Á©∫
 			while (sql_row = mysql_fetch_row(result))
 			{
 				cnt++;
@@ -325,7 +325,7 @@ int Group_mysql::returnInfo(message & Data)
 				Data.GroupNum++;
 
 			}
-			//’À∫≈≤ª¥Ê‘⁄
+			//Ë¥¶Âè∑‰∏çÂ≠òÂú®
 			if (!cnt)
 			{
 				cout << "return GroupList error cause ID do not have" << endl;
@@ -344,19 +344,19 @@ int Group_mysql::returnInfo(message & Data)
 	}
 	else
 	{
-		cout << "return GroupList sql «Î«Û”Ôæ‰ ß∞‹" << endl;
+		cout << "return GroupList sql ËØ∑Ê±ÇËØ≠Âè•Â§±Ë¥•" << endl;
 		return 3;
 	}
 }
-//»• ˝æ›ø‚÷–…Ë÷√∫√”—±∏◊¢£®–ﬁ∏ƒ∫√”—–≈œ¢£©
+//ÂéªÊï∞ÊçÆÂ∫ì‰∏≠ËÆæÁΩÆÂ•ΩÂèãÂ§áÊ≥®Ôºà‰øÆÊîπÂ•ΩÂèã‰ø°ÊÅØÔºâ
 int Friend_mysql::setNicknameToFriend(message & Data)
 {
 	char order[1024];
-	sprintf_s(order, "UPDATE %s_friend SET ∫√”—±∏◊¢='%s' WHERE À˘ Ù’À∫≈=%s AND ∫√”—’À∫≈= %s"
+	sprintf_s(order, "UPDATE %s_friend SET Â•ΩÂèãÂ§áÊ≥®='%s' WHERE ÊâÄÂ±ûË¥¶Âè∑=%s AND Â•ΩÂèãË¥¶Âè∑= %s"
 		,Data.table, Data.NickName, Data.ID, Data.XID);
 	res = mysql_query(&myCont, order);
-	//sql ”Ôæ‰÷¥––≥…π¶
-	//cout <<"≤Èø¥res∑µªÿ÷µing£∫"<< res << endl;  //≥…π¶¡À∂¯«“res==1;
+	//sql ËØ≠Âè•ÊâßË°åÊàêÂäü
+	//cout <<"Êü•ÁúãresËøîÂõûÂÄºingÔºö"<< res << endl;  //ÊàêÂäü‰∫ÜËÄå‰∏îres==1;
 	if (!res)
 	{
 		return 1;
@@ -366,11 +366,11 @@ int Friend_mysql::setNicknameToFriend(message & Data)
 		return 0;
 	}
 }
-//»• ˝æ›ø‚÷–∞—∫√”—µƒœÍœ∏–≈œ¢∑µªÿ
+//ÂéªÊï∞ÊçÆÂ∫ì‰∏≠ÊääÂ•ΩÂèãÁöÑËØ¶ÁªÜ‰ø°ÊÅØËøîÂõû
 int Friend_mysql::findFriend(message & Data)
 {
 	char order[1024];
-	sprintf_s(order, "SELECT * FROM %s_details WHERE %s’À∫≈=%s"
+	sprintf_s(order, "SELECT * FROM %s_details WHERE %sË¥¶Âè∑=%s"
 		,Data.table,Data.table, Data.XID);
 	cout << order << endl;
 	res = mysql_query(&myCont, order);
@@ -381,84 +381,84 @@ int Friend_mysql::findFriend(message & Data)
 		{
 			if (sql_row = mysql_fetch_row(result))
 			{
-				strcpy_s(Data.Name, sql_row[1]);		//Œ¢X√˚◊÷
-				Data.TAge = atoi(sql_row[2]);			//T¡‰
-				strcpy_s(Data.BirthDay, sql_row[3]);	//≥ˆ…˙»’∆⁄
-				strcpy_s(Data.Place, sql_row[4]);		//À˘‘⁄µÿ
+				strcpy_s(Data.Name, sql_row[1]);		//ÂæÆXÂêçÂ≠ó
+				Data.TAge = atoi(sql_row[2]);			//TÈæÑ
+				strcpy_s(Data.BirthDay, sql_row[3]);	//Âá∫ÁîüÊó•Êúü
+				strcpy_s(Data.Place, sql_row[4]);		//ÊâÄÂú®Âú∞
 				return 1;
 				
 			}
 			else
 			{
-				cout << "sql "<< Data.table <<"_details ≤È—ØΩ·π˚Œ™ø’£¨∏√”√ªßø…ƒ‹≤ª¥Ê‘⁄" << endl;
+				cout << "sql "<< Data.table <<"_details Êü•ËØ¢ÁªìÊûú‰∏∫Á©∫ÔºåËØ•Áî®Êà∑ÂèØËÉΩ‰∏çÂ≠òÂú®" << endl;
 				return 2;
 			}
 		}
 		else
 		{
-			cout << "sql "<<Data.table <<"_details ≤È—ØΩ·π˚Œ™ø’£¨∏√”√ªßø…ƒ‹≤ª¥Ê‘⁄(result)" << endl;
+			cout << "sql "<<Data.table <<"_details Êü•ËØ¢ÁªìÊûú‰∏∫Á©∫ÔºåËØ•Áî®Êà∑ÂèØËÉΩ‰∏çÂ≠òÂú®(result)" << endl;
 			return 2;
 		}
 	}
 	else
 	{
-		cout << "sql "<< Data.table <<"_datails «Î«Û”Ôæ‰ ß∞‹" << endl;
+		cout << "sql "<< Data.table <<"_datails ËØ∑Ê±ÇËØ≠Âè•Â§±Ë¥•" << endl;
 		return 3;
 	}
 
 }
-//»• ˝æ›ø‚ÕÀ»∫
+//ÂéªÊï∞ÊçÆÂ∫ìÈÄÄÁæ§
 int Group_mysql::dropGroup(message & Data)
 {
 	char order[1024];
 	sprintf_s(order
-		, "DELETE FROM %s_group WHERE »∫∫≈=%s AND »∫≥…‘±’À∫≈=%s"
+		, "DELETE FROM %s_group WHERE Áæ§Âè∑=%s AND Áæ§ÊàêÂëòË¥¶Âè∑=%s"
 		,Data.table, Data.GID, Data.XID);
 	res = mysql_query(&myCont, order);
 	if (!res)
 	{
-		cout <<Data.XID <<"ÕÀ»∫"<<Data.GID<<"≥…π¶" << endl;
+		cout <<Data.XID <<"ÈÄÄÁæ§"<<Data.GID<<"ÊàêÂäü" << endl;
 		return 1;
 	}
 	else
 	{
-		cout << "ÕÀ»∫ ß∞‹ sql ”Ôæ‰«Î«Û ß∞‹" << endl;
+		cout << "ÈÄÄÁæ§Â§±Ë¥• sql ËØ≠Âè•ËØ∑Ê±ÇÂ§±Ë¥•" << endl;
 		return 0;
 	}
 }
-//»• ˝æ›ø‚…æ≥˝∫√”—
+//ÂéªÊï∞ÊçÆÂ∫ìÂà†Èô§Â•ΩÂèã
 int Friend_mysql::deleteFriend(message & Data)
 {
 	char order[1024];
 	sprintf_s(order
-		, "DELETE FROM %s_friend WHERE À˘ Ù’À∫≈=%s AND ∫√”—’À∫≈=%s"
+		, "DELETE FROM %s_friend WHERE ÊâÄÂ±ûË¥¶Âè∑=%s AND Â•ΩÂèãË¥¶Âè∑=%s"
 		,Data.table, Data.ID, Data.XID);
 	res = mysql_query(&myCont, order);
 	sprintf_s(order
-		, "DELETE FROM %s_friend WHERE À˘ Ù’À∫≈=%s AND ∫√”—’À∫≈=%s"
+		, "DELETE FROM %s_friend WHERE ÊâÄÂ±ûË¥¶Âè∑=%s AND Â•ΩÂèãË¥¶Âè∑=%s"
 		,Data.table, Data.XID, Data.ID);
 	res = mysql_query(&myCont, order);
 	if (!res)
 	{
-		cout << Data.ID << "…æ≥˝∫√”—" << Data.XID << "≥…π¶" << endl;
+		cout << Data.ID << "Âà†Èô§Â•ΩÂèã" << Data.XID << "ÊàêÂäü" << endl;
 		return 1;
 	}
 	else
 	{
-		cout << "…æ≥˝∫√”— ß∞‹ sql ”Ôæ‰«Î«Û ß∞‹" << endl;
+		cout << "Âà†Èô§Â•ΩÂèãÂ§±Ë¥• sql ËØ≠Âè•ËØ∑Ê±ÇÂ§±Ë¥•" << endl;
 		return 0;
 	}
 }
-//»• ˝æ›ø‚ÃÌº”»∫
+//ÂéªÊï∞ÊçÆÂ∫ìÊ∑ªÂä†Áæ§
 int Group_mysql::addGroup(message & Data)
 {
 	int groupKind = -1;
 	char order[1024];
 	sprintf_s(order
-		, "SELECT * FROM %s_group WHERE »∫∫≈=%s"
+		, "SELECT * FROM %s_group WHERE Áæ§Âè∑=%s"
 		,Data.table, Data.GID);
 
-	cout << "◊º±∏≤È—Ø»∫µƒæﬂÃÂ–≈œ¢°£°£°£" << endl;
+	cout << "ÂáÜÂ§áÊü•ËØ¢Áæ§ÁöÑÂÖ∑‰Ωì‰ø°ÊÅØ„ÄÇ„ÄÇ„ÄÇ" << endl;
 	cout << order << endl;
 	
 	
@@ -472,14 +472,14 @@ int Group_mysql::addGroup(message & Data)
 			{
 				strcpy_s(Data.GroupName[0], sql_row[2]);
 				groupKind = atoi(sql_row[1]);
-				cout << "»∫√˚≥∆" << Data.GroupName[0] << "»∫¿‡–Õ" << groupKind << endl;
+				cout << "Áæ§ÂêçÁß∞" << Data.GroupName[0] << "Áæ§Á±ªÂûã" << groupKind << endl;
 			}
 		}
 	}
-	//œ‡µ±”⁄flag÷µ,≈–∂œ«∞√Ê≤È—Øπ˝≥Ã «∑Ò“—æ≠À≥¿˚÷¥––≤È—Ø
+	//Áõ∏ÂΩì‰∫éflagÂÄº,Âà§Êñ≠ÂâçÈù¢Êü•ËØ¢ËøáÁ®ãÊòØÂê¶Â∑≤ÁªèÈ°∫Âà©ÊâßË°åÊü•ËØ¢
 	if (groupKind == -1)
 	{
-		cout << "º”»∫ ß∞‹ sql ”Ôæ‰√ª”–≤ÈµΩ∏√»∫" << endl;
+		cout << "Âä†Áæ§Â§±Ë¥• sql ËØ≠Âè•Ê≤°ÊúâÊü•Âà∞ËØ•Áæ§" << endl;
 		return 0;
 	}
 	sprintf_s(order
@@ -488,16 +488,16 @@ int Group_mysql::addGroup(message & Data)
 	res = mysql_query(&myCont, order);
 	if (!res)
 	{
-		cout << Data.XID << "º”»∫" << Data.GID << "≥…π¶" << endl;
+		cout << Data.XID << "Âä†Áæ§" << Data.GID << "ÊàêÂäü" << endl;
 		return 1;
 	}
 	else
 	{
-		cout << "º”»∫ ß∞‹ sql ”Ôæ‰«Î«Û ß∞‹" << endl;
+		cout << "Âä†Áæ§Â§±Ë¥• sql ËØ≠Âè•ËØ∑Ê±ÇÂ§±Ë¥•" << endl;
 		return 0;
 	}
 }
-//»• ˝æ›ø‚º”∫√”—
+//ÂéªÊï∞ÊçÆÂ∫ìÂä†Â•ΩÂèã
 int Friend_mysql::addFriend(message & Data)
 {
 	int flag = 0;
@@ -505,7 +505,7 @@ int Friend_mysql::addFriend(message & Data)
 	char friendName[20];
 	char order[1024];
 	sprintf_s(order
-		, "SELECT * FROM id_confirm WHERE %s’À∫≈=%s"
+		, "SELECT * FROM id_confirm WHERE %sË¥¶Âè∑=%s"
 		,Data.table, Data.XID);
 	cout << order << endl;
 	res = mysql_query(&myCont, order);
@@ -519,13 +519,13 @@ int Friend_mysql::addFriend(message & Data)
 				flag = 1;
 				strcpy_s(TID, sql_row[0]);
 				strcpy_s(friendName, sql_row[6]);
-				cout << "∫√”—√˚◊÷£∫" << friendName << "∆ΩÃ®◊‹’À∫≈£∫" << TID << endl;
+				cout << "Â•ΩÂèãÂêçÂ≠óÔºö" << friendName << "Âπ≥Âè∞ÊÄªË¥¶Âè∑Ôºö" << TID << endl;
 			}
 		}
 	}
 	if (!flag)
 	{
-		cout << "√ª”–’“µΩ" << Data.XID << endl;
+		cout << "Ê≤°ÊúâÊâæÂà∞" << Data.XID << endl;
 		return 0;
 	}
 	sprintf_s(order
@@ -538,20 +538,20 @@ int Friend_mysql::addFriend(message & Data)
 	res = mysql_query(&myCont, order);
 	if (!res)
 	{
-		cout << Data.ID << "ÃÌº”∫√”—" << Data.XID << "≥…π¶" << endl;
+		cout << Data.ID << "Ê∑ªÂä†Â•ΩÂèã" << Data.XID << "ÊàêÂäü" << endl;
 		return 1;
 	}
 	else
 	{
-		cout << "ÃÌº”∫√”— ß∞‹ sql ”Ôæ‰«Î«Û ß∞‹" << endl;
+		cout << "Ê∑ªÂä†Â•ΩÂèãÂ§±Ë¥• sql ËØ≠Âè•ËØ∑Ê±ÇÂ§±Ë¥•" << endl;
 		return 0;
 	}	
 }
-//∏˘æ›∆ΩÃ®◊‹’À∫≈£¨»• ˝æ›ø‚÷–≤È—Ø Œ¢X∆ΩÃ®’À∫≈ «∑Ò¥Ê‘⁄£®¥Ê‘⁄º¥ø…Õ∆ºˆ£©
+//Ê†πÊçÆÂπ≥Âè∞ÊÄªË¥¶Âè∑ÔºåÂéªÊï∞ÊçÆÂ∫ì‰∏≠Êü•ËØ¢ ÂæÆXÂπ≥Âè∞Ë¥¶Âè∑ÊòØÂê¶Â≠òÂú®ÔºàÂ≠òÂú®Âç≥ÂèØÊé®ËçêÔºâ
 int Friend_mysql::isExist(message & Data)
 {
 	char order[1024];
-	sprintf_s(order, "SELECT * FROM id_confirm WHERE ’À∫≈=%s AND %s’À∫≈<>0 "
+	sprintf_s(order, "SELECT * FROM id_confirm WHERE Ë¥¶Âè∑=%s AND %sË¥¶Âè∑<>0 "
 			, Data.ID, Data.table);
 	cout << order << endl;
 	res = mysql_query(&myCont, order);
@@ -567,21 +567,21 @@ int Friend_mysql::isExist(message & Data)
 				else if (!strcmp("wc", Data.table))line = 4;
 				else line = 5;
 				strcpy_s(Data.XID, sql_row[line]);
-				cout << "’“µΩ∂‘”¶µƒ" << Data.table << "’À∫≈:" << Data.XID << endl;
+				cout << "ÊâæÂà∞ÂØπÂ∫îÁöÑ" << Data.table << "Ë¥¶Âè∑:" << Data.XID << endl;
 				return 1;
 			}
 		}
 	}
 	return 0;
 }
-//»• ˝æ›ø‚Ãﬂ»À
+//ÂéªÊï∞ÊçÆÂ∫ìË∏¢‰∫∫
 int Group_mysql::kickGroupMember(message & Data)
 {
 	char order[1024];
 	int myStatus= -1;
 	int itStatus= -1;
 	sprintf_s(order
-		, "SELECT * FROM %s_group WHERE »∫∫≈=%s AND »∫≥…‘±’À∫≈=%s"
+		, "SELECT * FROM %s_group WHERE Áæ§Âè∑=%s AND Áæ§ÊàêÂëòË¥¶Âè∑=%s"
 		,Data.table, Data.GID, Data.ID);
 	cout << order << endl;
 	res = mysql_query(&myCont, order);
@@ -599,12 +599,12 @@ int Group_mysql::kickGroupMember(message & Data)
 	}
 	if (myStatus == -1) 
 	{
-		cout << "√ª≤ÈµΩmyStatus" << endl;
+		cout << "Ê≤°Êü•Âà∞myStatus" << endl;
 		return -1;
 	}
 
 	sprintf_s(order
-		, "SELECT * FROM %s_group WHERE »∫∫≈=%s AND »∫≥…‘±’À∫≈=%s"
+		, "SELECT * FROM %s_group WHERE Áæ§Âè∑=%s AND Áæ§ÊàêÂëòË¥¶Âè∑=%s"
 		,Data.table, Data.GID, Data.XID);
 	cout << order << endl;
 	res = mysql_query(&myCont, order);
@@ -622,40 +622,40 @@ int Group_mysql::kickGroupMember(message & Data)
 	}
 	if (itStatus == -1)
 	{
-		cout << "√ª≤ÈµΩitStatus" << endl;
+		cout << "Ê≤°Êü•Âà∞itStatus" << endl;
 		return -1;
 	}
 	if (myStatus <= itStatus)
 	{
-		cout << "µÿŒªÃ´µÕÃﬂ≤ª¡À" << endl;
+		cout << "Âú∞‰ΩçÂ§™‰ΩéË∏¢‰∏ç‰∫Ü" << endl;
 		return 0;
 	}
 	sprintf_s(order
-		, "DELETE FROM %s_group WHERE »∫∫≈=%s AND »∫≥…‘±’À∫≈=%s"
+		, "DELETE FROM %s_group WHERE Áæ§Âè∑=%s AND Áæ§ÊàêÂëòË¥¶Âè∑=%s"
 		,Data.table, Data.GID, Data.XID);
 	cout << order << endl;
 	res = mysql_query(&myCont, order);
 	if (!res)
 	{
-		cout << Data.ID << "Ω´" << Data.XID << "¥”" << Data.GID << "»∫÷–Ãﬂ≥ˆ" << endl;
+		cout << Data.ID << "Â∞Ü" << Data.XID << "‰ªé" << Data.GID << "Áæ§‰∏≠Ë∏¢Âá∫" << endl;
 		return 1;
 	}
 	else
 	{
-		cout << "Ãﬂ»Àsql”Ôæ‰÷¥–– ß∞‹" << endl;
+		cout << "Ë∏¢‰∫∫sqlËØ≠Âè•ÊâßË°åÂ§±Ë¥•" << endl;
 		return -2;
 	}
 
 }
-//»• ˝æ›ø‚÷–∞—ƒ≥∏ˆ»∫µƒ≥…‘±–≈œ¢∑µªÿ
+//ÂéªÊï∞ÊçÆÂ∫ì‰∏≠ÊääÊüê‰∏™Áæ§ÁöÑÊàêÂëò‰ø°ÊÅØËøîÂõû
 int Group_mysql::listMember(message & Data)
 {
 	char order[1024];
 	sprintf_s(order
-		, "SELECT * FROM %s_group WHERE »∫∫≈=%s"
+		, "SELECT * FROM %s_group WHERE Áæ§Âè∑=%s"
 		,Data.table, Data.GID);
 	res = mysql_query(&myCont, order);
-	//≥…‘±∏ˆ ˝
+	//ÊàêÂëò‰∏™Êï∞
 	Data.GroupNum = 0;
 	if (!res)
 	{
@@ -664,30 +664,30 @@ int Group_mysql::listMember(message & Data)
 		{
 			while (sql_row = mysql_fetch_row(result))
 			{
-				strcpy_s(Data.GroupList[Data.GroupNum], sql_row[3]);	//’À∫≈
-				strcpy_s(Data.GroupName[Data.GroupNum], sql_row[4]);	//√˚◊÷
-				Data.GroupStatus[Data.GroupNum] = atoi(sql_row[5]);		//…Ì∑›
+				strcpy_s(Data.GroupList[Data.GroupNum], sql_row[3]);	//Ë¥¶Âè∑
+				strcpy_s(Data.GroupName[Data.GroupNum], sql_row[4]);	//ÂêçÂ≠ó
+				Data.GroupStatus[Data.GroupNum] = atoi(sql_row[5]);		//Ë∫´‰ªΩ
 				Data.GroupNum++;
 			}
 		}
 	}
 	if (0 == Data.GroupNum)
 	{
-		cout << Data.GID << "»∫ƒ⁄√ª»À" << endl;
+		cout << Data.GID << "Áæ§ÂÜÖÊ≤°‰∫∫" << endl;
 		return 0;
 	}
 	else
 	{
-		cout << Data.GID << "»∫≤ÈµΩ" << Data.GroupNum << "∏ˆ≥…‘±" <<endl;
+		cout << Data.GID << "Áæ§Êü•Âà∞" << Data.GroupNum << "‰∏™ÊàêÂëò" <<endl;
 		return 1;
 	}
 }
-//»• ˝æ›ø‚÷–…˝º∂QQ»∫
+//ÂéªÊï∞ÊçÆÂ∫ì‰∏≠ÂçáÁ∫ßQQÁæ§
 int Group_mysql::levelUpGroup(message & Data)
 {
 	char order[1024];
 	sprintf_s(order
-		, "SELECT * FROM %s_group WHERE »∫∫≈=%s AND »∫≥…‘±’À∫≈=%s"
+		, "SELECT * FROM %s_group WHERE Áæ§Âè∑=%s AND Áæ§ÊàêÂëòË¥¶Âè∑=%s"
 		,Data.table, Data.GID, Data.ID);
 	int flag = 0;
 	res = mysql_query(&myCont, order);
@@ -698,12 +698,12 @@ int Group_mysql::levelUpGroup(message & Data)
 		{
 			if (sql_row = mysql_fetch_row(result))
 			{
-				if (1 == atoi(sql_row[1]))		//»∫“—æ≠ «◊Ó∏ﬂº∂
+				if (1 == atoi(sql_row[1]))		//Áæ§Â∑≤ÁªèÊòØÊúÄÈ´òÁ∫ß
 				{
 					Data.action = 0;
 					return 0;
 				}
-				if (3 != atoi(sql_row[5]))		//≤ª «»∫÷˜
+				if (3 != atoi(sql_row[5]))		//‰∏çÊòØÁæ§‰∏ª
 				{
 					Data.action = -1;
 					return -1;
@@ -716,26 +716,26 @@ int Group_mysql::levelUpGroup(message & Data)
 	if (flag)
 	{
 		sprintf_s(order
-			, "UPDATE %s_group SET »∫¿‡–Õ=1 WHERE »∫∫≈=%s"
+			, "UPDATE %s_group SET Áæ§Á±ªÂûã=1 WHERE Áæ§Âè∑=%s"
 			,Data.table, Data.GID);
 		res = mysql_query(&myCont, order);
 		cout << order << endl;
-		cout <<Data.GID<< "≥…π¶…˝º∂Œ™≥£πÊ"<< Data.table <<"»∫" << endl;
+		cout <<Data.GID<< "ÊàêÂäüÂçáÁ∫ß‰∏∫Â∏∏ËßÑ"<< Data.table <<"Áæ§" << endl;
 		Data.action = 1;
 		return 1;
 	}
 	else
 	{
-		cout << "√ª”–’“µΩ∑˚∫œ“™«Ûµƒ»∫◊È" << endl;;
+		cout << "Ê≤°ÊúâÊâæÂà∞Á¨¶ÂêàË¶ÅÊ±ÇÁöÑÁæ§ÁªÑ" << endl;;
 		return -1;
 	}
 }
-//»• ˝æ›ø‚¥¥Ω®»∫
+//ÂéªÊï∞ÊçÆÂ∫ìÂàõÂª∫Áæ§
 int Group_mysql::creatGroup(message & Data) 
 {
 	
 	char order[1024];
-	sprintf_s(order, "select »∫∫≈ FROM %s_group order by »∫∫≈ desc"
+	sprintf_s(order, "select Áæ§Âè∑ FROM %s_group order by Áæ§Âè∑ desc"
 		, Data.table);
 	res = mysql_query(&myCont, order);
 	int maxGid = 0;
@@ -752,7 +752,7 @@ int Group_mysql::creatGroup(message & Data)
 	}
 	if (!maxGid)
 	{
-		cout << "sql ◊‘∂Ø∑÷≈‰»∫’À∫≈ ß∞‹" << endl;
+		cout << "sql Ëá™Âä®ÂàÜÈÖçÁæ§Ë¥¶Âè∑Â§±Ë¥•" << endl;
 		return 0;
 	}
 	_itoa_s(maxGid + 1, Data.GroupList[0], 10);
@@ -769,11 +769,11 @@ int Group_mysql::creatGroup(message & Data)
 		return 0;
 	}
 }
-//»• ˝æ›ø‚¥¥Ω®◊”»∫(∏¥÷∆‘≠»∫≥…‘±£¨À≠¥¥Ω®À≠ «◊”»∫µƒ»∫÷˜)
+//ÂéªÊï∞ÊçÆÂ∫ìÂàõÂª∫Â≠êÁæ§(Â§çÂà∂ÂéüÁæ§ÊàêÂëòÔºåË∞ÅÂàõÂª∫Ë∞ÅÊòØÂ≠êÁæ§ÁöÑÁæ§‰∏ª)
 int Group_mysql::creatTempGroup(message & Data)
 {
 	char order[1024];
-	sprintf_s(order, "select »∫∫≈ FROM %s_group order by »∫∫≈ desc"
+	sprintf_s(order, "select Áæ§Âè∑ FROM %s_group order by Áæ§Âè∑ desc"
 		, Data.table);
 	res = mysql_query(&myCont, order);
 	int maxGid = 0;
@@ -790,7 +790,7 @@ int Group_mysql::creatTempGroup(message & Data)
 	}
 	if (!maxGid)
 	{
-		cout << "sql ◊‘∂Ø∑÷≈‰◊”»∫’À∫≈ ß∞‹" << endl;
+		cout << "sql Ëá™Âä®ÂàÜÈÖçÂ≠êÁæ§Ë¥¶Âè∑Â§±Ë¥•" << endl;
 		return 0;
 	}
 	char origin_Gid[10];
@@ -798,12 +798,12 @@ int Group_mysql::creatTempGroup(message & Data)
 	char GName[21];
 	strcpy_s(GName, Data.GroupName[1]);
 	_itoa_s(maxGid + 1, Data.GID, 10);
-	//¥”‘≠»∫≤Â»Î»À
+	//‰ªéÂéüÁæ§ÊèíÂÖ•‰∫∫
 	sprintf_s(order
-		, "SELECT * FROM %s_group WHERE »∫∫≈=%s"
+		, "SELECT * FROM %s_group WHERE Áæ§Âè∑=%s"
 		, Data.table, origin_Gid);
 	res = mysql_query(&myCont, order);
-	//≥…‘±∏ˆ ˝
+	//ÊàêÂëò‰∏™Êï∞
 	Data.GroupNum = 0;
 	if (!res)
 	{
@@ -812,8 +812,8 @@ int Group_mysql::creatTempGroup(message & Data)
 		{
 			while (sql_row = mysql_fetch_row(result))
 			{
-				strcpy_s(Data.GroupList[Data.GroupNum], sql_row[3]);	//’À∫≈
-				strcpy_s(Data.GroupName[Data.GroupNum], sql_row[4]);	//√˚◊÷
+				strcpy_s(Data.GroupList[Data.GroupNum], sql_row[3]);	//Ë¥¶Âè∑
+				strcpy_s(Data.GroupName[Data.GroupNum], sql_row[4]);	//ÂêçÂ≠ó
 				Data.GroupNum++;
 			}
 		}
@@ -827,23 +827,23 @@ int Group_mysql::creatTempGroup(message & Data)
 		res = mysql_query(&myCont, order);
 		if (res)
 		{
-			cout << "∏¥÷∆≥…‘±≥ˆ¥Ì" << endl;
+			cout << "Â§çÂà∂ÊàêÂëòÂá∫Èîô" << endl;
 			return -1;
 		}
 	}
 	sprintf_s(order
-		, "UPDATE %s_group SET »∫≥…‘±…Ì∑› = 3 WHERE »∫∫≈=%d AND »∫≥…‘±’À∫≈=%s"
+		, "UPDATE %s_group SET Áæ§ÊàêÂëòË∫´‰ªΩ = 3 WHERE Áæ§Âè∑=%d AND Áæ§ÊàêÂëòË¥¶Âè∑=%s"
 		, Data.table, maxGid + 1, Data.XID);
 	cout << order << endl;
 	res = mysql_query(&myCont, order);
 	if (!res)
 	{
-		cout << "◊”»∫»∫÷˜…Ë÷√≥…π¶" << endl;
+		cout << "Â≠êÁæ§Áæ§‰∏ªËÆæÁΩÆÊàêÂäü" << endl;
 		return 1;
 	}
 	else
 	{
-		cout << "◊”»∫»∫÷˜…Ë÷√ ß∞‹" << endl;
+		cout << "Â≠êÁæ§Áæ§‰∏ªËÆæÁΩÆÂ§±Ë¥•" << endl;
 		return -1;
 	}
 }
