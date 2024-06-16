@@ -122,7 +122,7 @@ int User_mysql::returnInfo(message & Data)
 Friend_mysql::Friend_mysql()
 {
 	strcpy_s(user, "root");
-	strcpy_s(pswd, "201501516lyn...");
+	strcpy_s(pswd, "452311516l5.Xyz..");
 	strcpy_s(host, "localhost");
 	port = 3307;
 	mysql_init(&myCont);
